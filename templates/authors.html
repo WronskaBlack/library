@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Welcome to my Library!</h1>
+    <ul>
+        {% for author in object_list|dictsort:"last_name" %}
+            <li>
+                <a href="{% url 'author_detail' author.id %}"> {{ author.last_name }} </a>
+            </li>
+        {% empty %}
+            <p>No authors in database!</p>
+        {% endfor %}
+    </ul>
+    {% if perms.viewer.add_author %}
+        <a href="{% url 'author_create' %}" role="button" class="btn btn-primary"> Add author </a>
+    {% endif %}
+{% endblock %}

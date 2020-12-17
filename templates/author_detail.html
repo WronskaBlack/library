@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Welcome to my Library!</h1>
+    <h3>{{ object.first_name }} {{ object.last_name }}</h3>
+
+    {% if perms.viewer.change_author %}
+        <a href="{% url 'author_update' object.id %}" class="btn btn-primary" role="button">Update author</a>
+    {% endif %}
+    {% if perms.viewer.delete_author %}
+        <a href="{% url 'author_delete' object.id %}" class="btn btn-danger" role="button">Delete author</a>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Welcome to my Library!</h1>
+    <h3>{{ object.title }}</h3>
+    <p>Author: {{ object.author.first_name }} {{ object.author.last_name }}</p>
+    <p>Publication date: {{ object.publication_date }}</p>
+    <p>Genre: {{ object.genre.name }}</p>
+    <p>Rating: {{ object.rating }}</p>
+    <p>Description: {{ object.description }}</p>
+
+    {% if perms.viewer.change_book %}
+        <a href="{% url 'book_update' object.id %}" class="btn btn-primary" role="button">Update book</a>
+    {% endif %}
+    {% if perms.viewer.delete_book %}
+        <a href="{% url 'book_delete' object.id %}" class="btn btn-danger" role="button">Delete book</a>
+    {% endif %}
+
+{% endblock %}
