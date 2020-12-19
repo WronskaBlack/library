@@ -24,7 +24,7 @@ class Book(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.DO_NOTHING)
     rating = models.IntegerField()
     publication_date = models.DateField()
-    description = models.TextField()
+    description = models.TextField(null=True)
 
     def __str__(self):
         return self.title
